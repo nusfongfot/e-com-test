@@ -50,7 +50,6 @@ export default function HomePage() {
       <MenuAppBar setCarts={setCarts} carts={carts} />
       <Container maxWidth={"lg"} sx={{ mt: 2 }}>
         <BasicBreadcrumbs setProducts={setProducts} setLoading={setLoading} />
-
         {loading ? (
           <Grid container>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
