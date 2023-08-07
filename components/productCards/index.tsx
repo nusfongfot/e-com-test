@@ -65,12 +65,11 @@ export default function ProductsCards({
 
                 {item ? (
                   <CardMedia
-                    sx={{
-                      height: 250,
+                    component="img"
+                    style={{
+                      height: "250px",
                       width: "100%",
-                      objectFit: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
+                      objectFit: "contain",
                     }}
                     image={item.image}
                     title="green iguana"
