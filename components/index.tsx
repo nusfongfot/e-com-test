@@ -1,18 +1,5 @@
 import MenuAppBar from "@/components/navbar";
-import {
-  Box,
-  Grid,
-  Skeleton,
-  Stack,
-  Card,
-  CardContent,
-  CardMedia,
-  Button,
-  Typography,
-  Container,
-  Backdrop,
-  CircularProgress,
-} from "@mui/material";
+import { Box, Grid, Skeleton, Stack, Container } from "@mui/material";
 import BasicBreadcrumbs from "./breadcrumbs";
 import ProductsCards from "./productCards";
 import { useEffect, useState } from "react";
@@ -47,9 +34,16 @@ export default function HomePage() {
 
   return (
     <div>
-      <MenuAppBar setCarts={setCarts} carts={carts} />
+      <MenuAppBar
+        setCarts={setCarts}
+        carts={carts}
+        products={products}
+        setProducts={setProducts}
+        getApi={getApi}
+      />
       <Container maxWidth={"lg"} sx={{ mt: 2 }}>
         <BasicBreadcrumbs setProducts={setProducts} setLoading={setLoading} />
+
         {loading ? (
           <Grid container>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (

@@ -19,7 +19,6 @@ type Props = {
 export default function BasicBreadcrumbs({ setProducts, setLoading }: Props) {
   const [type, setType] = React.useState<string>("");
 
-  console.log("type", type == "");
   const getApi = async () => {
     setLoading(true);
     try {

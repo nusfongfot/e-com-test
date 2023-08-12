@@ -14,6 +14,7 @@ import Menu from "@mui/material/Menu";
 import { Button, Divider, Stack, styled } from "@mui/material";
 import Badge, { BadgeProps } from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import SearchItem from "../searchItem";
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -27,8 +28,17 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 type Props = {
   carts: any[];
   setCarts: React.Dispatch<React.SetStateAction<any[]>>;
+  setProducts: React.Dispatch<React.SetStateAction<any[]>>;
+  products: any[];
+  getApi: () => void;
 };
-export default function MenuAppBar({ carts, setCarts }: Props) {
+export default function MenuAppBar({
+  carts,
+  setCarts,
+  products,
+  setProducts,
+  getApi,
+}: Props) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [total, setTotal] = React.useState<number>(0);
 
@@ -75,7 +85,21 @@ export default function MenuAppBar({ carts, setCarts }: Props) {
             Scorpion Shop
           </Typography>
 
-          <div>
+          <Box flexGrow={3}>
+            <SearchItem
+              setProducts={setProducts}
+              products={products}
+              getApi={getApi}
+            />
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexGrow: 1,
+              justifyContent: "flex-end",
+            }}
+          >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -160,7 +184,7 @@ export default function MenuAppBar({ carts, setCarts }: Props) {
                 </>
               )}
             </Menu>
-          </div>
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>
