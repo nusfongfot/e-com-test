@@ -12,9 +12,17 @@ export default function SearchItem({ products, setProducts, getApi }: Props) {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const findItem = products.filter((item) =>
-      item.title.toLowerCase().includes(search.toLowerCase())
-    );
+    const findItem = products.filter((item) => {
+      const findTitle = item.title.toLowerCase().includes(search.toLowerCase());
+      const findDesc = item.description
+        .toLowerCase()
+        .includes(search.toLowerCase());
+      const findCate = item.category
+        .toLowerCase()
+        .includes(search.toLowerCase());
+      return findTitle || findDesc || findCate;
+    });
+    console.log("find", findItem);
     setProducts(findItem);
   };
 
@@ -25,7 +33,10 @@ export default function SearchItem({ products, setProducts, getApi }: Props) {
   }, [search]);
 
   return (
-    <Box component={"form"} onSubmit={(e: any) => handleSearch(e)}>
+    <Box
+      component={"form"}
+      onSubmit={(e: FormEvent<HTMLFormElement>) => handleSearch(e)}
+    >
       <TextField
         value={search}
         sx={{ background: "white" }}
